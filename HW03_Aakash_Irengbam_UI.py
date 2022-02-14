@@ -1,74 +1,48 @@
-attempt = 0               #To keep count of number of attempts made by user
-RightWord = "sonar"       #The correct word to be guessed by user
+import HW03_Aakash_Irengbam_Dictionary
+def userinterface(RightWord):
+    GuessedWordList = []     #To keep track of the words guessed by the user and notify if the same word has been guessed before
+    attempt = 0
+    while(attempt<6):         #To limit the number of attempts of the user to 6
 
-GuessedWordList = []             #To keep track of the words guessed by the user and notify if the same word has been guessed before
-CorrectSpot = []          #To store and show the letters that are in the correct spot for the user
-IncorrectSpot = []        #To store and show the letters that are in the incorrect spot for the user
-DoesntExist = []          #To store and show the letters that dont exist in the word guessed by the user
-
-
-while(attempt<6):         #To limit the number of attempts of the user to 6
-    guess = input("Enter your 5 letter word guess:  ")    #Take the input from the user 
-    if(guess in GuessedWordList):          #Check if the word has already been guessed
-        print("This was a previous guess please try again")   
-    else:   
-        if((len(guess) > 5) or (len(guess) < 5) or (guess.isalpha() == False)):   #To check if input has been according to the guidelines
-            print("The input should be 5 letters and alphabets only")
-            continue
-        elif guess == RightWord:
-            print("This is the correct word")
-            break
+        guess = input("Enter your 5 letter word guess:  ").lower()    #Take the input from the user
+        if(len(guess) == 0):
+            quit()
+        if(guess in GuessedWordList):          #Check if the word has already been guessed
+            print("This was a previous guess please try again")
         else:
-            i = 0
-            for i in range(5):
-                if guess[i] in RightWord:                       #Check if letter exists in the correct word
-                    if RightWord[i]==guess[i]:                  #Check if any alphabets match between the two in the correct spot
-                        CorrectSpot.append(guess[i])
-                    else:
-                        IncorrectSpot.append(guess[i])          
-                else:
-                    DoesntExist.append(guess[i])
-                i+=1
-        print("The following letters are in the incorrect spot", IncorrectSpot)   #Print the alphabets in the incorrect spot
-        print("The following letters are in the correct spot", CorrectSpot)       #Print the alphabets in the correct spot
-        print("The following letters are not in the right word", DoesntExist)     #Print the alphabets not in the right word
-    IncorrectSpot.clear()                 #Clear the list for the next attempt
-    CorrectSpot.clear()
-    DoesntExist.clear()                   
-    attempt+=1                            #Increment the value of attempt to keep track of the number of guesses
-    GuessedWordList.append(guess)
-    
-    
-#Pseudocode
+            if((len(guess) > 5) or (len(guess) < 5) or (guess.isalpha() == False) or (HW03_Aakash_Irengbam_Dictionary.checking(guess) == False)):   #To check if input has been according to the guidelines
+                print("The input should be 5 letters and alphabets and in dictionary only")
+                continue
+            elif guess == RightWord:           #check if the entered word is correct
+                print("This is the correct word")
+                Win+=1
+                break
+            else:                              #to check the condtions on if and where the entered letter locations match with the correct word
+                letter_counts: dict = {}
+                appraisal = []
 
-#while attempt less than 6 do       
-# guess = input("Enter your 5 letter word guess  ")     
-# if guess in WordList          
-#    print "This was a previous guess please try again"   
-# else   
-#   if length of guess > 5 or length of guess < 5 or guess is not an alphabet   
-#       print "The input should be 5 letters and alphabets only" 
-#           continue
-#   else if guess is equal to RightWord
-#       print "This is the correct word" 
-#       break
-#   else
-#       i = 0
-#       for i := 0 to 4 do
-#           if guess[i] in RightWord
-#               if RightWord[i] is equal to guess[i]                  
-#                   add guess[i] to correct spot list
-#               else
-#                   add guess[i] to incorrect spot list
-#           else
-#               add guess[i] to doesnt exist list
-#       i+=1
-#   print incorrect spot list  
-#   print correct spot list       
-#   print doesnt exist list     
-#clear incorrect spot list                 
-#clear correct spot list
-#clear doesnt exist list                   
-#increment attempt count by 1                            
-#add the word to guessed word list
-            
+                for letter in RightWord:
+                    if letter in letter_counts.keys():
+                        letter_counts[letter] += 1
+                    else:
+                        letter_counts[letter] = 1
+
+                for index in range(len(RightWord)):
+                    if guess[index] == RightWord[index]:
+                        appraisal.append(' ')
+                        letter_counts[RightWord[index]] -= 1
+                    else:
+                        appraisal.append('"')
+
+                for index in range(len(RightWord)):
+                    if guess[index] != RightWord[index]:
+                        if guess[index] in letter_counts:
+                            if letter_counts[guess[index]] > 0:
+                                letter_counts[guess[index]] -= 1
+                                appraisal[index] = "'"
+
+                print(" "*33 + ''.join(appraisal))
+        attempt+=1
+        GuessedWordList.append(guess)
+    else:                                                                #if the number of attempts have exceeded 6 enterr the condition
+        print("Failed in 6 tries no more tries left, try again next time")
