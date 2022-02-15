@@ -2,6 +2,10 @@ import HW03_Aakash_Irengbam_Dictionary
 def userinterface(RightWord):
     GuessedWordList = []     #To keep track of the words guessed by the user and notify if the same word has been guessed before
     attempt = 0
+    CorrectPosition = 0
+    IncorrectGuess = 0
+    IncorrectPosition = 0
+    Win = 0
     while(attempt<6):         #To limit the number of attempts of the user to 6
 
         guess = input("Enter your 5 letter word guess:  ").lower()    #Take the input from the user
@@ -31,8 +35,10 @@ def userinterface(RightWord):
                     if guess[index] == RightWord[index]:
                         appraisal.append(' ')
                         letter_counts[RightWord[index]] -= 1
+                        CorrectPosition+=1
                     else:
                         appraisal.append('"')
+                        IncorrectGuess+=1
 
                 for index in range(len(RightWord)):
                     if guess[index] != RightWord[index]:
@@ -40,9 +46,16 @@ def userinterface(RightWord):
                             if letter_counts[guess[index]] > 0:
                                 letter_counts[guess[index]] -= 1
                                 appraisal[index] = "'"
+                                IncorrectPosition+=1
 
                 print(" "*33 + ''.join(appraisal))
         attempt+=1
         GuessedWordList.append(guess)
-    else:                                                                #if the number of attempts have exceeded 6 enterr the condition
+    else:                                                                #if the number of attempts have exceeded 6 enter the condition
         print("Failed in 6 tries no more tries left, try again next time")
+    print("The game statistics were as follows:\n")
+    print("Attempts: ", attempt, "\n")
+    print("Incorrect position: ",IncorrectPosition, "\n")
+    print("Correct position: ", CorrectPosition, "\n")
+    print("Incorrect guess: ", IncorrectGuess, "\n")
+    print("Win count", Win)
