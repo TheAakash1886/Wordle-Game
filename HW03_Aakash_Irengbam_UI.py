@@ -5,19 +5,19 @@ def WordLength(guess):
     else:
         return True
     
-def GuessedWord(guess, GuessedWordList):
+def GuessedWord(guess, GuessedWordList):              #Check if the word has already been guessed
     if(guess in GuessedWordList):
         return True
     else:
         return False
     
-def AuthorizedWord(guess):
+def AuthorizedWord(guess):                            #To check if input has been according to the guidelines
     if((len(guess) > 5) or (len(guess) < 5) or (guess.isalpha() == False)):
         return True
     else:
         return False
     
-def CorrectWord(guess, RightWord):
+def CorrectWord(guess, RightWord):                    #check if the entered word is correct
     if(guess == RightWord):
         return True
     else:
@@ -36,13 +36,13 @@ def userinterface(RightWord):
         guess = input("Enter your 5 letter word guess:  ").lower()    #Take the input from the user
         if(WordLength(guess) == False):
             quit()
-        if(GuessedWord(guess, GuessedWordList) == True):          #Check if the word has already been guessed
+        if(GuessedWord(guess, GuessedWordList) == True):          
             print("This was a previous guess please try again")
         else:
             if((AuthorizedWord(guess) == True) or (HW03_Aakash_Irengbam_Dictionary.checking(guess) == False)):   #To check if input has been according to the guidelines
                 print("The input should be 5 letters and alphabets and in dictionary only")
                 continue
-            elif (CorrectWord(guess, RightWord) == True):           #check if the entered word is correct
+            elif (CorrectWord(guess, RightWord) == True):           
                 print("This is the correct word")
                 Win+=1
                 break

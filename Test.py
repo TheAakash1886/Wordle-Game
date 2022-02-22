@@ -5,7 +5,7 @@ import unittest                               #import the unittest
 from unittest.mock import patch
 
 class WordleTest(unittest.TestCase):
-    def test_in_dictionary(self) -> None :
+    def test_in_dictionary(self) -> None :                        
         """Test if the word is in the dictionary - Positive"""
         self.assertTrue(Dictionary.checking("hello"))
         
