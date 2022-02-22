@@ -1,5 +1,30 @@
 import HW03_Aakash_Irengbam_Dictionary
+def WordLength(guess):
+    if(len(guess) == 0):
+        return False
+    else:
+        return True
+    
+def GuessedWord(guess, GuessedWordList):
+    if(guess in GuessedWordList):
+        return True
+    else:
+        return False
+    
+def AuthorizedWord(guess):
+    if((len(guess) > 5) or (len(guess) < 5) or (guess.isalpha() == False)):
+        return True
+    else:
+        return False
+    
+def CorrectWord(guess, RightWord):
+    if(guess == RightWord):
+        return True
+    else:
+        return False  
+
 def userinterface(RightWord):
+    
     GuessedWordList = []     #To keep track of the words guessed by the user and notify if the same word has been guessed before
     attempt = 0
     CorrectPosition = 0
@@ -9,15 +34,15 @@ def userinterface(RightWord):
     while(attempt<6):         #To limit the number of attempts of the user to 6
 
         guess = input("Enter your 5 letter word guess:  ").lower()    #Take the input from the user
-        if(len(guess) == 0):
+        if(WordLength(guess) == False):
             quit()
-        if(guess in GuessedWordList):          #Check if the word has already been guessed
+        if(GuessedWord(guess, GuessedWordList) == True):          #Check if the word has already been guessed
             print("This was a previous guess please try again")
         else:
-            if((len(guess) > 5) or (len(guess) < 5) or (guess.isalpha() == False) or (HW03_Aakash_Irengbam_Dictionary.checking(guess) == False)):   #To check if input has been according to the guidelines
+            if((AuthorizedWord(guess) == True) or (HW03_Aakash_Irengbam_Dictionary.checking(guess) == False)):   #To check if input has been according to the guidelines
                 print("The input should be 5 letters and alphabets and in dictionary only")
                 continue
-            elif guess == RightWord:           #check if the entered word is correct
+            elif (CorrectWord(guess, RightWord) == True):           #check if the entered word is correct
                 print("This is the correct word")
                 Win+=1
                 break
