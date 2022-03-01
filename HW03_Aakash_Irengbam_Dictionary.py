@@ -17,14 +17,20 @@ newList = content.split("\n")
         
         
 def randomword():                                                #choose a random word from the dictionary 
-    RightWord = random.choice(newList)    
-    return RightWord
+    try:
+        RightWord = random.choice(newList)    
+        return RightWord
+    except:
+        print("Randomword function not working")
 
-def checking(y):                                                 #check if the user entered word exists in the dicionary
-    if y in newList:
-        return True
-    else:
-        return False
+def checking(y):                                                #check if the user entered word exists in the dicionary
+    try:
+        if y in newList:
+            return True
+        else:
+            return False
+    except:
+        print("checking not working")
     
 def removeWord(word):
     with open("wordListNew.txt", "r") as f:
@@ -37,10 +43,14 @@ def removeWord(word):
         resetWords()
 
 def resetWords():
-    f = open("wordListNew.txt", "w")
-    f.write(newList)
-    f.close()
 
+    try:
+        f = open("wordListNew.txt", "w")
+        f.write(newList)
+        f.close()
+    except:
+        print("Reset function not working")
+        
 def fileStatus():
     if(os.stat("wordListNew.txt").st_size == 0):
         return True

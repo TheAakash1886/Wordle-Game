@@ -1,33 +1,48 @@
 import HW03_Aakash_Irengbam_Dictionary
 def WordLength(guess):
-    if(len(guess) == 0):
-        return False
-    else:
-        return True
+    try:
+        if(len(guess) == 0):
+            return False
+        else:
+            return True
+    except:
+        print("Word length function not working")
     
 def GuessedWord(guess, GuessedWordList):              #Check if the word has already been guessed
-    if(guess in GuessedWordList):
-        return True
-    else:
-        return False
-    
+    try:
+        if(guess in GuessedWordList):
+            return True
+        else:
+            return False
+    except:
+        print("Guessed Word function not working")
+        
 def AuthorizedWord(guess):                            #To check if input has been according to the guidelines
-    if((len(guess) > 5) or (len(guess) < 5) or (guess.isalpha() == False)):
-        return True
-    else:
-        return False
+    try:
+        if((len(guess) > 5) or (len(guess) < 5) or (guess.isalpha() == False)):
+            return True
+        else:
+            return False
+    except:
+        print("Authorized Word function not working")
     
 def CorrectWord(guess, RightWord):                    #check if the entered word is correct
-    if(guess == RightWord):
-        return True
-    else:
-        return False
+    try:
+        if(guess == RightWord):
+            return True
+        else:
+            return False
+    except:
+        print("Correct Word function not working")
+    
     
 def LoggingToFile(ToWrite,type):
-    f = open("gameplay.log", "a+")
-    f.write(f"{type}: {ToWrite}\n")
-    f.close()
-    
+    try:
+        f = open("gameplay.log", "a+")
+        f.write(f"{type}: {ToWrite}\n")
+        f.close()
+    except:
+        print("LoggingToFile not working")
 
 def userinterface(RightWord):
     
