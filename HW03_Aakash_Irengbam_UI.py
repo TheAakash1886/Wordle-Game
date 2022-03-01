@@ -21,7 +21,13 @@ def CorrectWord(guess, RightWord):                    #check if the entered word
     if(guess == RightWord):
         return True
     else:
-        return False  
+        return False
+    
+def LoggingToFile(ToWrite,type):
+    f = open("gameplay.log", "a+")
+    f.write(f"{type}: {ToWrite}\n")
+    f.close()
+    
 
 def userinterface(RightWord):
     
@@ -31,6 +37,7 @@ def userinterface(RightWord):
     IncorrectGuess = 0
     IncorrectPosition = 0
     Win = 0
+    LoggingToFile(RightWord, "RightWord")
     while(attempt<6):         #To limit the number of attempts of the user to 6
 
         guess = input("Enter your 5 letter word guess:  ").lower()    #Take the input from the user
@@ -76,6 +83,8 @@ def userinterface(RightWord):
                 print(" "*33 + ''.join(appraisal))
         attempt+=1
         GuessedWordList.append(guess)
+        LoggingToFile(guess, "Guess")
+        #WriteToFile(RightWord)
     else:                                                                #if the number of attempts have exceeded 6 enter the condition
         print("Failed in 6 tries no more tries left, try again next time")
     print("The game statistics were as follows:\n")
@@ -84,3 +93,5 @@ def userinterface(RightWord):
     print("Correct position: ", CorrectPosition, "\n")
     print("Incorrect guess: ", IncorrectGuess, "\n")
     print("Win count", Win)
+    LoggingToFile(attempt, "Attempt")
+    LoggingToFile(Win, "Win")
