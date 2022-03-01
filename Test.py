@@ -44,6 +44,10 @@ class WordleTest(unittest.TestCase):
     def test_word_incorrect_word(self) -> None :
         """Test if the word is correct - Negative"""
         self.assertFalse(UI.CorrectWord("ghost", "slave"))
+    
+    def test_file_status_funciton(self) -> None :
+        """Testing the file status function"""
+        self.assertFalse(Dictionary.fileStatus())
         
     
 if __name__ == '__main__':
