@@ -48,7 +48,7 @@ def occur_likely():
     f.close()
     occur_like = {}
     for word in WordsList:
-        if len(word) != 0:
+        if checkLen(word):
             occurence_likelihood = float(letter_occurence[word[0]][0]) * float(letter_occurence[word[1]][1]) * float(letter_occurence[word[2]][2]) * float(letter_occurence[word[3]][3]) * float(letter_occurence[word[4]][4])
             occur_like[word] = occurence_likelihood
 
@@ -61,4 +61,10 @@ def occur_likely():
         f.write(f"{flag}, {word[0]}, {word[1]}\n")
         flag += 1
     f.close()
+    
+def checkLen(word):
+    if len(word) != 0:
+        return True
+    else:
+        return False
 
