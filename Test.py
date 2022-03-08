@@ -1,6 +1,7 @@
 import HW03_Aakash_Irengbam_Dictionary as Dictionary        #import the other modules to use their functions
 import HW03_Aakash_Irengbam_Wordle as Wordle
 import HW03_Aakash_Irengbam_UI as UI
+import HW07_Aakash_Irengbam_Collections as c
 import unittest                               #import the unittest
 from unittest.mock import patch
 
@@ -48,6 +49,13 @@ class WordleTest(unittest.TestCase):
     def test_file_status_funciton(self) -> None :
         """Testing the file status function"""
         self.assertFalse(Dictionary.fileStatus())
+    
+    def test_alphabet_function_false(self) -> None :
+        """Testing alphabet likely function for false value"""
+        self.assertFalse(c.checkLen(""))
+    def test_alphabet_function_true(self) -> None :
+        """Testing alphabet likely function for true value"""
+        self.assertTrue(c.checkLen("books"))
         
     
 if __name__ == '__main__':
