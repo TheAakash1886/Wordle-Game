@@ -201,7 +201,6 @@ cargo
 carlo
 carol
 carry
-cases
 casey
 casio
 catch
@@ -930,6 +929,7 @@ quiet
 quilt
 quite
 quote
+races
 racks
 radar
 radio
