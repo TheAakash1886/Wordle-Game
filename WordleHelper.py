@@ -34,5 +34,5 @@ def rankedWords(correctWords, incorrectWords):
                 myList.remove(word)
     return myList
 
-#testcall to check the function is working right
+#Checking to see if the function is working right
 print(rankedWords(['j','k'],['z','y','b']))
