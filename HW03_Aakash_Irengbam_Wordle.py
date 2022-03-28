@@ -23,7 +23,9 @@ def main():                                                       #define the ma
     RightWord = []                                                       
     RightWord = HW03_Aakash_Irengbam_Dictionary.randomword()      #call to the dictionary to generate the random word
     HW03_Aakash_Irengbam_Dictionary.removeWord(RightWord)
-    HW03_Aakash_Irengbam_UI.userinterface(RightWord)              #send the generated random word to the User Interface
+    #HW03_Aakash_Irengbam_UI.userinterface(RightWord)              #send the generated random word to the User Interface
+    Inter = HW03_Aakash_Irengbam_UI.Interface(RightWord)
+    Inter.userinterface()
     
 if __name__ == "__main__":                                        #run the main function
     main()

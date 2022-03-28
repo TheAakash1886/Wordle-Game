@@ -53,6 +53,7 @@ class WordleTest(unittest.TestCase):
     def test_alphabet_function_false(self) -> None :
         """Testing alphabet likely function for false value"""
         self.assertFalse(c.checkLen(""))
+        
     def test_alphabet_function_true(self) -> None :
         """Testing alphabet likely function for true value"""
         self.assertTrue(c.checkLen("books"))
