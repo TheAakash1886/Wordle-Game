@@ -196,8 +196,8 @@ class Interface():
         # Win = 0
         # LoggingToFile(self.RightWord, "RightWord")
         # while(attempt<6):         #To limit the number of attempts of the user to 6
-
-        guess = betterguess    #Take the input from the user
+        appraisal = []
+        guess = betterguess    #jhTake the input from the user
         LengthWord = Length(guess)
         Punt = Correct(guess, GuessedWordList)
         Authorised = Author(guess)
@@ -211,7 +211,7 @@ class Interface():
                 print("The input should be 5 letters and alphabets and in dictionary only")
             elif (WC.CorrectWord() == True):           
                 print("This is the correct word")
-                Win+=1
+                quit()
             else:                              #to check the condtions on if and where the entered letter locations match with the correct word
                 letter_counts: dict = {}
                 appraisal = []
@@ -240,7 +240,7 @@ class Interface():
             # attempt+=1
         # GuessedWordList.append(guess)
         # LoggingToFile(guess, "Guess")
-        return ''.join(appraisal)
+        return appraisal
             #WriteToFile(RightWord)
         # else:                                                                #if the number of attempts have exceeded 6 enter the condition
         #     print("Failed in 6 tries no more tries left, try again next time")

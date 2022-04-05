@@ -25,6 +25,7 @@ def rankedWords(correctLetters, incorrectLetters):
     else:
         for key in rankDict:
             myList.append(rankDict[key])
+    newList = myList.copy()
     if incorrectLetters != None:
         for word in myList:
             flag = 0
@@ -32,8 +33,8 @@ def rankedWords(correctLetters, incorrectLetters):
                 if letter in word:
                     flag = 1
             if flag == 1:
-                myList.remove(word)
-    return myList
+                newList.remove(word)
+    return newList
 
 #Checking to see if the function is working right
-# print(rankedWords(['j','k'],['z','y','b']))
+# print(rankedWords([],['s','a','l','e']))
