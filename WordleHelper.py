@@ -6,17 +6,18 @@ with open('wordRank.csv', newline='') as csvfile:
         rankDict[row[0].split(',')[0]] = row[1].split(',')[0]
 rankDict.pop('Rank')
 
-def rankedWords(correctWords, incorrectWords):
+
+def rankedWords(correctLetters, incorrectLetters):
     myList = []
     defaultList = []
-    if correctWords == None and incorrectWords == None:
+    if correctLetters == None and incorrectLetters == None:
         for i in range(1,51):
             defaultList.append(rankDict[str(i)])
         return defaultList
-    if correctWords != None:
+    if correctLetters != None:
         for key in range(1,len(rankDict)):
             flag = 0
-            for letter in correctWords:
+            for letter in correctLetters:
                 if letter not in rankDict[str(key)]:
                     flag = 1
             if flag == 0:
@@ -24,10 +25,10 @@ def rankedWords(correctWords, incorrectWords):
     else:
         for key in rankDict:
             myList.append(rankDict[key])
-    if incorrectWords != None:
+    if incorrectLetters != None:
         for word in myList:
             flag = 0
-            for letter in incorrectWords:
+            for letter in incorrectLetters:
                 if letter in word:
                     flag = 1
             if flag == 1:
@@ -35,4 +36,4 @@ def rankedWords(correctWords, incorrectWords):
     return myList
 
 #Checking to see if the function is working right
-print(rankedWords(['j','k'],['z','y','b']))
+# print(rankedWords(['j','k'],['z','y','b']))
