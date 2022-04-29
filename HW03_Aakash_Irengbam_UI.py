@@ -1,4 +1,6 @@
 import HW03_Aakash_Irengbam_Dictionary
+import Database as db
+db_logging = db.SQDatabase()
 class Length():
     def __init__(self, guess):
         self.guess = guess
@@ -185,18 +187,19 @@ class Interface():
         print("Win count", Win)
         LoggingToFile(attempt, "Attempt")
         LoggingToFile(Win, "Win")
+        db_logging.GameDetails(
+                        attempts = attempt, wordle = self.RightWord, input_word=guess, log="")
+        db_logging.GameStatistics(
+                    win_status = Win, number_of_games = attempt, win_percentage = f"{str((Win*100)/attempt)} %", guesses = attempt)
         
     def userinterfaceSecond(self,betterguess):
     
-        GuessedWordList = []     #To keep track of the words guessed by the user and notify if the same word has been guessed before
-        # attempt = 0
-        # CorrectPosition = 0
-        # IncorrectGuess = 0
-        # IncorrectPosition = 0
-        # Win = 0
-        # LoggingToFile(self.RightWord, "RightWord")
-        # while(attempt<6):         #To limit the number of attempts of the user to 6
+        GuessedWordList = []     #To keep track of the words guessed by the user and notify if the same word has been guessed before        #To limit the number of attempts of the user to 6
         appraisal = []
+        CorrectPosition = 0
+        IncorrectGuess = 0
+        IncorrectPosition = 0
+        Win = 0
         guess = betterguess    #jhTake the input from the user
         LengthWord = Length(guess)
         Punt = Correct(guess, GuessedWordList)
@@ -226,8 +229,10 @@ class Interface():
                     if guess[index] == self.RightWord[index]:
                         appraisal.append(' ')
                         letter_counts[self.RightWord[index]] -= 1
+                        CorrectPosition+=1
                     else:
                         appraisal.append('"')
+                        IncorrectGuess+=1
 
                 for index in range(len(self.RightWord)):
                     if guess[index] != self.RightWord[index]:
@@ -235,20 +240,5 @@ class Interface():
                             if letter_counts[guess[index]] > 0:
                                 letter_counts[guess[index]] -= 1
                                 appraisal[index] = "'"
-
-                    # print(" "*33 + ''.join(appraisal))
-            # attempt+=1
-        # GuessedWordList.append(guess)
-        # LoggingToFile(guess, "Guess")
+                                IncorrectPosition+=1
         return appraisal
-            #WriteToFile(RightWord)
-        # else:                                                                #if the number of attempts have exceeded 6 enter the condition
-        #     print("Failed in 6 tries no more tries left, try again next time")
-        # print("The game statistics were as follows:\n")
-        # print("Attempts: ", attempt, "\n")
-        # print("Incorrect position: ",IncorrectPosition, "\n")
-        # print("Correct position: ", CorrectPosition, "\n")
-        # print("Incorrect guess: ", IncorrectGuess, "\n")
-        # print("Win count", Win)
-        # LoggingToFile(attempt, "Attempt")
-        # LoggingToFile(Win, "Win")
