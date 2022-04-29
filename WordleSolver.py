@@ -32,7 +32,6 @@ def Solver(Betterattempts):
                 print("This is the correct word")
             i = 0
             while (i < 5):
-                #BufferGuess = BetterGuessList[Betterattempts-1]
                 if(Pos[i] == " " or Pos[i] == "'") and not GoodLetters.__contains__(initialguess[i]):
                     GoodLetters.append(initialguess[i])
                 else:
@@ -46,7 +45,6 @@ def Solver(Betterattempts):
                     BadLetters.remove(BadLetters_Copy[j])
                 j += 1
             BufferList = help.rankedWords(GoodLetters,BadLetters)
-            #BetterGuessList.append(initialguess)
             if(len(BufferList) > 0):
                 initialguess = BufferList[0]
             Betterattempts+=1
